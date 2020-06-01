@@ -6,7 +6,9 @@
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         </span>
-        <% if current_user.requested_friends.include? user %>
+        <% if current_user.friends.include? user %>
+          <%= link_to "Unfriend", friendship_path(user.id), { method: :delete, remote: true } %>
+        <% elsif current_user.requested_friends.include? user %>
           <%= link_to "Pending", friendship_path(user.id), { method: :delete, remote: true } %>
         <% elsif current_user.requesting_friends.include? user %>
           <%= link_to "Accept", accept_path(user.id), remote: true %>
