@@ -1,0 +1,7 @@
+link = document.querySelector('a[href="/friendships?id=<%= @friendship.friend_id %>"]')
+
+link.textContent = 'Pending'
+
+link.dataset.method = "delete"
+
+link.href = "/friendships/<%= @friendship.friend_id %>"

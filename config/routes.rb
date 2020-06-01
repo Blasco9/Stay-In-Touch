@@ -10,5 +10,8 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
+  resources :friendships, only: [:create, :destroy]
+
+  get 'accept/:id', to: 'friendships#accept', as: :accept
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
