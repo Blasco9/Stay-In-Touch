@@ -1,13 +1,17 @@
-if(<%= current_user.id %> === <%= @friendship.user_id %>) {
-  link = document.querySelector('a[href="/friendships/<%= @friendship.friend_id %>"]')
-  
-  link.href = "/friendships?id=<%= @friendship.friend_id %>"
+link = document.querySelector('a[href="/friendships/<%= @friendship.user_id %>"]') || ""
+
+if(link.textContent === 'Reject') {
+  link.parentElement.parentElement.removeChild(link.parentElement)
 } else {
-  link = document.querySelector('a[href="/friendships/<%= @friendship.user_id %>"]')
+  if(<%= current_user.id %> === <%= @friendship.friend_id %>) {
+    link.href = "/friendships?id=<%= @friendship.user_id %>"
+  } else {
+    link = document.querySelector('a[href="/friendships/<%= @friendship.friend_id %>"]')
+    
+    link.href = "/friendships?id=<%= @friendship.friend_id %>"
+  }
   
-  link.href = "/friendships?id=<%= @friendship.user_id %>"
+  link.textContent = "Add as Friend"
+  
+  link.dataset.method = "post"
 }
-
-link.textContent = "Add as Friend"
-
-link.dataset.method = "post"
