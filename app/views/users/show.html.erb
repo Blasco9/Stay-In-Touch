@@ -2,7 +2,9 @@
   <h2><%= "Name: #{@user.name}" %></h2>
   
   <% if current_user != @user %>
-    <%= link_to "Add as Friend", friendships_path(id: @user.id), { method: :post, remote: true } %>
+    <% unless current_user.friends.include? @user %>
+      <%= link_to "Add as Friend", friendships_path(id: @user.id), { method: :post, remote: true } %>
+    <% end %>
   <% else %>
     <div>
       <h3>Friendships Requests</h3>
