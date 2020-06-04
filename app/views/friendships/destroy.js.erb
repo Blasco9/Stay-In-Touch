@@ -1,6 +1,6 @@
 link = document.querySelector('a[href="/friendships/<%= @friendship.user_id %>"]') || ""
 
-if(link.textContent === 'Reject') {
+if(location.pathname !== '/users') {
   link.parentElement.parentElement.removeChild(link.parentElement)
 } else {
   if(<%= current_user.id %> === <%= @friendship.friend_id %>) {
@@ -11,6 +11,8 @@ if(link.textContent === 'Reject') {
     link.href = "/friendships?id=<%= @friendship.friend_id %>"
   }
   
+  link.parentElement.removeChild(link.previousElementSibling)
+
   link.textContent = "Add as Friend"
   
   link.dataset.method = "post"
