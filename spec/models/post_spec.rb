@@ -14,8 +14,8 @@ RSpec.describe Post, type: :model do
       expect(post).not_to be_valid
     end
 
-    it "post should be invalid if it has content longer than 1000 characters" do
-      post.content = 'a'*1001
+    it 'post should be invalid if it has content longer than 1000 characters' do
+      post.content = 'a' * 1001
       expect(post).not_to be_valid
     end
   end

@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :requesting_friends, through: :friendships_requests, source: :user
 
   def friends
-    friends = requested_friendships.map { |f| f.friend if f.status == 'accepted' } + 
-              friendships_requests.map { |f| f.user if f.status == 'accepted' }
+    requested_friendships.map { |f| f.friend if f.status == 'accepted' } +
+      friendships_requests.map { |f| f.user if f.status == 'accepted' }
   end
 end

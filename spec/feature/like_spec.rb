@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Creating a new like', type: :feature do
   let(:user) { User.create(name: 'test_user', email: 'user@gmail.com', password: 'password') }
-  
+
   before(:each) do
     user.posts.create(content: 'post content')
     visit new_user_session_path

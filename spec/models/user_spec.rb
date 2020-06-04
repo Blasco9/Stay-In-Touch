@@ -13,15 +13,15 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
 
-    it "user should be invalid if it has a name longer than 20 characters" do
-      user.name = 'a'*21
+    it 'user should be invalid if it has a name longer than 20 characters' do
+      user.name = 'a' * 21
       expect(user).not_to be_valid
     end
   end
 
   context 'user#friends' do
-  let(:friend) { User.create(name: 'friend', email: 'friend@gmail.com', password: 'password') }
-  
+    let(:friend) { User.create(name: 'friend', email: 'friend@gmail.com', password: 'password') }
+
     it "should return a collection of the user's friends" do
       user.save
       Friendship.create(user_id: user.id, friend_id: friend.id, status: 'accepted')

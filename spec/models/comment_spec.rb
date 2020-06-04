@@ -15,8 +15,8 @@ RSpec.describe Comment, type: :model do
       expect(comment).not_to be_valid
     end
 
-    it "comment should be invalid if it has content longer than 200 characters" do
-      comment.content = 'a'*201
+    it 'comment should be invalid if it has content longer than 200 characters' do
+      comment.content = 'a' * 201
       expect(comment).not_to be_valid
     end
   end

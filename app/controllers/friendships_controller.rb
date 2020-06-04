@@ -4,23 +4,23 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.new(user_id: current_user.id, friend_id: params[:id], status: 'pending')
 
     if @friendship.save
-      respond_to do |format|  
-        format.js { }
-      end 
+      respond_to do |format|
+        format.js {}
+      end
     else
       @friendship.errors.messages
     end
   end
 
   def accept
-    @friendship = Friendship.where("user_id = ? AND friend_id = ?", params[:id].to_i, current_user.id).take
+    @friendship = Friendship.where('user_id = ? AND friend_id = ?', params[:id].to_i, current_user.id).take
 
     @friendship.status = 'accepted'
 
     if @friendship.save
-      respond_to do |format|  
-        format.js { }
-      end 
+      respond_to do |format|
+        format.js {}
+      end
     else
       @friendship.errors.messages
     end
@@ -31,9 +31,9 @@ class FriendshipsController < ApplicationController
                   current_user.friendships_requests.find_by(user_id: params[:id])
 
     if @friendship.destroy
-      respond_to do |format|  
-        format.js { }
-      end 
+      respond_to do |format|
+        format.js {}
+      end
     else
       @friendship.errors.messages
     end
