@@ -1,5 +1,25 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
+  
+  <% if current_user != @user %>
+    <% unless current_user.friends.include? @user %>
+      <%= link_to "Add as Friend", friendships_path(id: @user.id), { method: :post, remote: true } %>
+    <% end %>
+  <% else %>
+    <div>
+      <h3>Friendships Requests</h3>
+      <ul>
+        <% @requests.each do |r| %>
+          <li>
+            <%= r.user.name %>
+            <%= link_to "Accept", accept_path(r.user.id), remote: true %>
+            <%= link_to "Reject", friendship_path(r.user.id), { method: :delete, remote: true } %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">

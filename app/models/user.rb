@@ -9,4 +9,13 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :requested_friendships, foreign_key: :user_id, class_name: 'Friendship'
+  has_many :requested_friends, through: :requested_friendships, source: :friend
+  has_many :friendships_requests, foreign_key: :friend_id, class_name: 'Friendship'
+  has_many :requesting_friends, through: :friendships_requests, source: :user
+
+  def friends
+    requested_friendships.map { |f| f.friend if f.status == 'accepted' } +
+      friendships_requests.map { |f| f.user if f.status == 'accepted' }
+  end
 end
