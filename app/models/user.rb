@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
 
   def friendship_requests
-    Friendship.where("(user_id = #{id} OR friend_id = #{id}) AND status = 'pending'").take
+    Friendship.where("(user_id = #{id} OR friend_id = #{id}) AND status = 'pending'")
+    .pluck(:user_id, :friend_id)
   end
 end

@@ -9,7 +9,7 @@
     <div>
       <h3>Friendships Requests</h3>
       <ul>
-        <% @requests.each do |r| %>
+        <% @user.friendship_requests.each do |r| %>
           <li>
             <%= r.user.name %>
             <%= link_to "Accept", accept_path(r.user.id), remote: true %>
