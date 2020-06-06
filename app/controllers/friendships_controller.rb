@@ -1,6 +1,5 @@
 class FriendshipsController < ApplicationController
   def create
-    puts params
     @friendship = Friendship.new(user_id: current_user.id, friend_id: params[:id], status: 'pending')
 
     if @friendship.save
@@ -13,7 +12,7 @@ class FriendshipsController < ApplicationController
   end
 
   def accept
-    @friendship = Friendship.where('user_id = ? AND friend_id = ?', params[:id].to_i, current_user.id).take
+    @friendship = Friendship.find_by(user_id: params[:id], friend_id: current_user.id)
 
     @friendship.status = 'accepted'
 
@@ -27,8 +26,8 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = current_user.requested_friendships.find_by(friend_id: params[:id]) ||
-                  current_user.friendships_requests.find_by(user_id: params[:id])
+    @friendship = Friendship.find_by(user_id: params[:id], friend_id: current_user.id) ||
+                  Friendship.find_by(user_id: current_user.id, friend_id: params[:id])
 
     if @friendship.destroy
       respond_to do |format|
