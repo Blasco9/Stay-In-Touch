@@ -12,4 +12,18 @@ module UserHelper
       link_to "Add as Friend", friendships_path(id: user.id), { method: :post, remote: true }
     end
   end
+
+  def show_friendship_requests(friendships)
+    lis = ''
+    
+    friendships.each do |f|
+      if f.user == current_user
+        lis += "<li>#{f.friend.name}#{determine_link f.friend}</li>"
+      else
+        lis += "<li>#{f.user.name}#{determine_link f.user}</li>"
+      end
+    end
+
+    lis.html_safe
+  end
 end
