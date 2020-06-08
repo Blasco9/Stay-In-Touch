@@ -8,6 +8,6 @@ class Friendship < ApplicationRecord
 
   after_destroy do |f|
     friendship = Friendship.find_by(user_id: f.friend_id, friend_id: f.user_id)
-    friendship.destroy unless friendship.nil?
+    friendship&.destroy
   end
 end
