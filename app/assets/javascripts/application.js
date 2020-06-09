@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require_tree .
 
-let link
+let link,
+    id

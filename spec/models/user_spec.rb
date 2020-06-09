@@ -33,9 +33,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:posts) }
     it { should have_many(:comments) }
     it { should have_many(:likes) }
-    it { should have_many(:requested_friendships) }
-    it { should have_many(:requested_friends) }
-    it { should have_many(:friendships_requests) }
-    it { should have_many(:requesting_friends) }
+    it { should have_many(:friendships) }
+    it { should have_many(:friends) }
   end
 end

@@ -15,13 +15,13 @@ RSpec.describe 'Creating and destroying friendship invitation', type: :feature, 
     click_button 'Log in'
   end
 
-  scenario 'friendship request creation' do
+  scenario 'friendship request creation from all users page' do
     visit users_path
     click_on 'Add as Friend'
     expect(page).to have_content('Pending')
   end
 
-  scenario 'friendship request aceptation' do
+  scenario 'friendship request aceptation from all users page' do
     visit users_path
     click_on 'Add as Friend'
     click_on 'Sign out'
@@ -35,7 +35,7 @@ RSpec.describe 'Creating and destroying friendship invitation', type: :feature, 
     expect(page).to have_content('Unfriend')
   end
 
-  scenario 'friendship request rejection' do
+  scenario 'friendship request rejection from all users page' do
     visit users_path
     click_on 'Add as Friend'
     click_on 'Sign out'
@@ -47,5 +47,39 @@ RSpec.describe 'Creating and destroying friendship invitation', type: :feature, 
     visit users_path
     click_on 'Reject'
     expect(page).to have_content('Add As Friend')
+  end
+
+  scenario 'friendship request creation from user profile page' do
+    visit user_path friend
+    click_on 'Add as Friend'
+    expect(page).to have_content('Pending')
+  end
+
+  scenario 'friendship request aceptation from user profile page' do
+    visit user_path friend
+    click_on 'Add as Friend'
+    click_on 'Sign out'
+
+    fill_in 'Email', with: friend.email
+    fill_in 'Password', with: friend.password
+    click_button 'Log in'
+
+    visit user_path friend
+    click_on 'Accept'
+    expect(page).not_to have_content('Accept', 'Reject')
+  end
+
+  scenario 'friendship request rejection from user profile page' do
+    visit user_path friend
+    click_on 'Add as Friend'
+    click_on 'Sign out'
+
+    fill_in 'Email', with: friend.email
+    fill_in 'Password', with: friend.password
+    click_button 'Log in'
+
+    visit user_path friend
+    click_on 'Reject'
+    expect(page).not_to have_content('Accept', 'Reject')
   end
 end

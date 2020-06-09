@@ -2,20 +2,12 @@
   <h2><%= "Name: #{@user.name}" %></h2>
   
   <% if current_user != @user %>
-    <% unless current_user.friends.include? @user %>
-      <%= link_to "Add as Friend", friendships_path(id: @user.id), { method: :post, remote: true } %>
-    <% end %>
+    <%= determine_link(@user) %>
   <% else %>
     <div>
       <h3>Friendships Requests</h3>
       <ul>
-        <% @requests.each do |r| %>
-          <li>
-            <%= r.user.name %>
-            <%= link_to "Accept", accept_path(r.user.id), remote: true %>
-            <%= link_to "Reject", friendship_path(r.user.id), { method: :delete, remote: true } %>
-          </li>
-        <% end %>
+        <%= show_friendship_requests @user.friendship_requests %>
       </ul>
     </div>
   <% end %>
