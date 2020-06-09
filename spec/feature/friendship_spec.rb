@@ -18,7 +18,7 @@ RSpec.describe 'Creating and destroying friendship invitation', type: :feature, 
   scenario 'friendship request creation from all users page' do
     visit users_path
     click_on 'Add as Friend'
-    expect(page).to have_content('Pending')
+    expect(page).to have_content('PENDING')
   end
 
   scenario 'friendship request aceptation from all users page' do
@@ -32,7 +32,7 @@ RSpec.describe 'Creating and destroying friendship invitation', type: :feature, 
 
     visit users_path
     click_on 'Accept'
-    expect(page).to have_content('Unfriend')
+    expect(page).to have_content('UNFRIEND')
   end
 
   scenario 'friendship request rejection from all users page' do
@@ -46,13 +46,13 @@ RSpec.describe 'Creating and destroying friendship invitation', type: :feature, 
 
     visit users_path
     click_on 'Reject'
-    expect(page).to have_content('Add As Friend')
+    expect(page).to have_content('ADD AS FRIEND')
   end
 
   scenario 'friendship request creation from user profile page' do
     visit user_path friend
     click_on 'Add as Friend'
-    expect(page).to have_content('Pending')
+    expect(page).to have_content('PENDING')
   end
 
   scenario 'friendship request aceptation from user profile page' do
@@ -66,7 +66,7 @@ RSpec.describe 'Creating and destroying friendship invitation', type: :feature, 
 
     visit user_path friend
     click_on 'Accept'
-    expect(page).not_to have_content('Accept', 'Reject')
+    expect(page).not_to have_content('ACCEPT', 'REJECT')
   end
 
   scenario 'friendship request rejection from user profile page' do
@@ -80,6 +80,6 @@ RSpec.describe 'Creating and destroying friendship invitation', type: :feature, 
 
     visit user_path friend
     click_on 'Reject'
-    expect(page).not_to have_content('Accept', 'Reject')
+    expect(page).not_to have_content('ACCEPT', 'REJECT')
   end
 end
