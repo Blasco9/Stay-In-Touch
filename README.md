@@ -1,6 +1,6 @@
 # Scaffold for social media app with Ruby on Rails
 
-This project is a social media with functionalities similar to Facebook. You can create an account, add other users as friends, create posts, write comments on posts and like posts or comments.
+This project is a social media app with functionalities similar to Facebook. You can create an account, add other users as friends, create posts, write comments on posts and like posts or comments.
 
 ![screenshot1](app/assets/images/Screenshot1.bmp)
 ![screenshot2](app/assets/images/Screenshot2.bmp)
