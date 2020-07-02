@@ -1,6 +1,6 @@
 # Scaffold for social media app with Ruby on Rails
 
-> This project is a social media with functionalities similar to facebook. You can create an account, add other users as friends, create posts, write comments on posts and like posts or comments
+This project is a social media with functionalities similar to Facebook. You can create an account, add other users as friends, create posts, write comments on posts and like posts or comments.
 
 ![screenshot1](app/assets/images/Screenshot1.bmp)
 ![screenshot2](app/assets/images/Screenshot2.bmp)
@@ -30,6 +30,10 @@ Rails: 5.2.4
 Postgres: >=9.5
 
 ### Setup
+
+Clone this repo:
+
+`git clone git@github.com:Blasco9/ror-social-scaffold.git`
 
 Instal gems with:
 
@@ -64,12 +68,13 @@ Open `http://localhost:3000/` in your browser.
 
 > The tests included in this project are unit tests with Rspec and integration tests with Rspec and Capybara.
 
-## Authors
+## Author
 
 👤 **Julian Blasco**
 
 - Github: [@Blasco9](https://github.com/Blasco9)
-- Linkedin: [Julian Blasco](https://www.linkedin.com/in/julian-augusto-blasco-1656a0153/)
+- Linkedin: [Julian Blasco](https://www.linkedin.com/in/julian-blasco/)
+- Email: blascoblasco9@gmail.com
 
 ## 🤝 Contributing
 
